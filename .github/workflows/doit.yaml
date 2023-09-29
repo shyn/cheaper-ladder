@@ -1,0 +1,22 @@
+name: Execute Files
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+    - cron: '0 8 * * *'
+
+jobs:
+  executeFile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Execute File at 23:00
+        if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 23 * * *' }}
+        run: ./AutomationAWS destroy  # 替换为您的可执行文件的路径和名称
+
+      - name: Execute File at 8:00
+        if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 8 * * *' }}
+        run: ./AutomationAWS create  # 替换为您的可执行文件的路径和名称
