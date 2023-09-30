@@ -6,6 +6,11 @@ on:
     - cron: '0 8 * * *'
   workflow_dispatch:
 
+env:
+  cf_zone: ${{ CF_ZONE }}
+  port: ${{ PORT }}
+  cf_apitoken: ${{ CF_APITOKEN }}
+
 jobs:
   executeFile:
     runs-on: ubuntu-latest
