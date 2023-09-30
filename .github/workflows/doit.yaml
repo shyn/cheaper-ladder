@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  cf_zone: ${{ CF_ZONE }}
-  port: ${{ PORT }}
-  cf_apitoken: ${{ CF_APITOKEN }}
+  cf_zone: ${{ vars.CF_ZONE }}
+  port: ${{ vars.PORT }}
+  cf_apitoken: ${{ secrets.CF_APITOKEN }}
 
 jobs:
   executeFile:
