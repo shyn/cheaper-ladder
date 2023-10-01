@@ -33,7 +33,7 @@ jobs:
         run: chmod +x ./AutomationAWS
         
       - name: Execute File at 23:00
-        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.workflow_dispatch.inputs.action == 'destroy') || (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *') }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy') || (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *') }}
         run: ./AutomationAWS destroy  # 替换为您的可执行文件的路径和名称
 
       - name: Execute File at 8:00
