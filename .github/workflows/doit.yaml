@@ -10,7 +10,6 @@ env:
   cf_zone: ${{ vars.CF_ZONE }}
   port: ${{ vars.PORT }}
   cf_apitoken: ${{ secrets.CF_APITOKEN }}
-  cf_apitoken: ${{ secrets.CF_APITOKEN }}
   aws_key: ${{ secrets.AWS_KEY }}
   aws_secret: ${{ secrets.AWS_SECRET }}
   psk: ${{ secrets.PSK }}
