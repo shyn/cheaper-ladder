@@ -5,6 +5,10 @@ on:
     - cron: '0 23 * * *'
     - cron: '0 8 * * *'
   workflow_dispatch:
+    inputs:
+      action:
+        description: actions to run
+        required: false
 
 env:
   cf_zone: ${{ vars.CF_ZONE }}
@@ -29,9 +33,9 @@ jobs:
         run: chmod +x ./AutomationAWS
         
       - name: Execute File at 23:00
-        if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 23 * * *' }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.workflow_dispatch.inputs.action == 'destroy') || (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *') }}
         run: ./AutomationAWS destroy  # 替换为您的可执行文件的路径和名称
 
       - name: Execute File at 8:00
-        if: ${{ github.event_name == 'schedule' && github.event.schedule == '0 8 * * *' }}
+        if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 8 * * *') }}
         run: ./AutomationAWS create  # 替换为您的可执行文件的路径和名称
