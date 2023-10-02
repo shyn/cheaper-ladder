@@ -2,8 +2,8 @@ name: Execute Files
 
 on:
   schedule:
-    - cron: '0 23 * * *'
-    - cron: '0 8 * * *'
+    - cron: '0 15 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       action:
@@ -32,10 +32,10 @@ jobs:
       - name: Change permissions
         run: chmod +x ./AutomationAWS
         
-      - name: Execute File at 23:00
-        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy') || (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *') }}
+      - name: Execute File at 23:00+8
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy') || (github.event_name == 'schedule' && github.event.schedule == '0 15 * * *') }}
         run: ./AutomationAWS destroy  # 替换为您的可执行文件的路径和名称
 
-      - name: Execute File at 8:00
-        if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 8 * * *') }}
+      - name: Execute File at 8:00+8
+        if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 0 * * *') }}
         run: ./AutomationAWS create  # 替换为您的可执行文件的路径和名称
