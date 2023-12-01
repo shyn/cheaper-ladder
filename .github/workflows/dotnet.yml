@@ -28,7 +28,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Publish
       run: |
-        dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:InvariantGlobalization=true -p:PublishDir=out/
+        dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:InvariantGlobalization=true -p:PublishDir=./out/
         - name: Create Release
         id: create_release
         uses: actions/create-release@v1
