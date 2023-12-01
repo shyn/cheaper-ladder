@@ -27,11 +27,11 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Publish
       run: |
-        dotnet publish -c Release -o cheaper-ladder -r linux-x64 --self-contained true -p:PublishTrimmed=true
+        dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:InvariantGlobalization=true -p:PublishDir=out/
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         prerelease: true
         title: "Latest Build"
-        files: cheaper-ladder
+        files: out/AutomationAWS
